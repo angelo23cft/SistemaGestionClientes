@@ -1,95 +1,62 @@
 ﻿@model IEnumerable<SistemaGestionClientes.Models.AgendaCliente>
 
-@{
-    ViewData["Title"] = "Index";
-}
+    @{
+    ViewData["Title"] = "Lista de Clientes";
+    }
 
-<h1>Index</h1>
+    <h1>Lista de Clientes</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Proyecto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Empresa)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Telefono)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Correo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaDeIngreso)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HoraDeAgenda)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaHoraAtencionOficina)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Revisado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Comentarios)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EquipoAtencion)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Proyecto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Empresa)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telefono)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Correo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaDeIngreso)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HoraDeAgenda)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaHoraAtencionOficina)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Revisado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Comentarios)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EquipoAtencion)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <p>
+        <a asp-action="Create" class="btn btn-success">Crear Nuevo Cliente</a>
+    </p>
+
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Nombre)</th>
+                <th>@Html.DisplayNameFor(model => model.Proyecto)</th>
+                <th>@Html.DisplayNameFor(model => model.Empresa)</th>
+                <th>@Html.DisplayNameFor(model => model.Telefono)</th>
+                <th>@Html.DisplayNameFor(model => model.Correo)</th>
+                <th>@Html.DisplayNameFor(model => model.FechaDeIngreso)</th>
+                <th>@Html.DisplayNameFor(model => model.HoraDeAgenda)</th>
+                <th>@Html.DisplayNameFor(model => model.FechaHoraAtencionOficina)</th>
+                <th>@Html.DisplayNameFor(model => model.Revisado)</th>
+                <th>@Html.DisplayNameFor(model => model.Comentarios)</th>
+                <th>@Html.DisplayNameFor(model => model.EquipoAtencion)</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                <td>@Html.DisplayFor(modelItem => item.Proyecto)</td>
+                <td>@Html.DisplayFor(modelItem => item.Empresa)</td>
+                <td>@Html.DisplayFor(modelItem => item.Telefono)</td>
+                <td>@Html.DisplayFor(modelItem => item.Correo)</td>
+                <td>@item.FechaDeIngreso.ToString("dd/MM/yyyy")</td>
+                <td>@item.HoraDeAgenda.ToString("hh\\:mm")</td>
+                <td>@item.FechaHoraAtencionOficina?.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>
+                    @if (item.Revisado)
+                    {
+                    <span class="badge badge-success">Sí</span>
+                    }
+                    else
+                    {
+                    <span class="badge badge-warning">No</span>
+                    }
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.Comentarios)</td>
+                <td>@Html.DisplayFor(modelItem => item.EquipoAtencion)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Detalles</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
