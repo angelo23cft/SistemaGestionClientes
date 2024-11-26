@@ -17,10 +17,11 @@ namespace SistemaGestionClientes.Data
         public DbSet<Tarea> Tareas { get; set; }
         public DbSet<RestriccionAcceso> RestriccionesAcceso { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public AppDbContext(DbContextOptions<AppDbContext> options)
+    :   base(options)
         {
-            optionsBuilder.UseSqlServer("Server=.;Database=infolutions_agenda_cliente;Trusted_Connection=True;");
         }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

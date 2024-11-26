@@ -1,6 +1,6 @@
 ﻿namespace SistemaGestionClientes.Models
 {
-    public class Proyecto
+    public class Proyecto 
     {
         public int Id { get; set; }
         public string Nombre { get; set; } // Nombre del proyecto

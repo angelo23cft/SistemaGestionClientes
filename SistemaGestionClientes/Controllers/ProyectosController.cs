@@ -10,11 +10,11 @@ using SistemaGestionClientes.Models;
 
 namespace SistemaGestionClientes.Controllers
 {
-    public class ProyectoesController : Controller
+    public class ProyectosController : Controller
     {
         private readonly AppDbContext _context;
 
-        public ProyectoesController(AppDbContext context)
+        public ProyectosController(AppDbContext context)
         {
             _context = context;
         }
