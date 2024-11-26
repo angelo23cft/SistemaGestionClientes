@@ -1,82 +1,95 @@
 ﻿@model SistemaGestionClientes.Models.AgendaCliente
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar Cliente";
 }
 
-<h1>Edit</h1>
+<h1>Editar Cliente</h1>
 
-<h4>AgendaCliente</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-lg-6 col-md-8 col-sm-12">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
+
             <div class="form-group">
                 <label asp-for="Nombre" class="control-label"></label>
                 <input asp-for="Nombre" class="form-control" />
                 <span asp-validation-for="Nombre" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Proyecto" class="control-label"></label>
                 <input asp-for="Proyecto" class="form-control" />
                 <span asp-validation-for="Proyecto" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Empresa" class="control-label"></label>
                 <input asp-for="Empresa" class="form-control" />
                 <span asp-validation-for="Empresa" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Telefono" class="control-label"></label>
-                <input asp-for="Telefono" class="form-control" />
+                <input asp-for="Telefono" class="form-control" type="tel" />
                 <span asp-validation-for="Telefono" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Correo" class="control-label"></label>
-                <input asp-for="Correo" class="form-control" />
+                <input asp-for="Correo" class="form-control" type="email" />
                 <span asp-validation-for="Correo" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="FechaDeIngreso" class="control-label"></label>
-                <input asp-for="FechaDeIngreso" class="form-control" />
+                <input asp-for="FechaDeIngreso" class="form-control" type="date" />
                 <span asp-validation-for="FechaDeIngreso" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="HoraDeAgenda" class="control-label"></label>
-                <input asp-for="HoraDeAgenda" class="form-control" />
+                <input asp-for="HoraDeAgenda" class="form-control" type="time" />
                 <span asp-validation-for="HoraDeAgenda" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="FechaHoraAtencionOficina" class="control-label"></label>
-                <input asp-for="FechaHoraAtencionOficina" class="form-control" />
+                <input asp-for="FechaHoraAtencionOficina" class="form-control" type="datetime-local" />
                 <span asp-validation-for="FechaHoraAtencionOficina" class="text-danger"></span>
             </div>
+
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Revisado" /> @Html.DisplayNameFor(model => model.Revisado)
+                    <input class="form-check-input" asp-for="Revisado" /> Revisado
                 </label>
             </div>
+
             <div class="form-group">
                 <label asp-for="Comentarios" class="control-label"></label>
-                <input asp-for="Comentarios" class="form-control" />
+                <textarea asp-for="Comentarios" class="form-control"></textarea>
                 <span asp-validation-for="Comentarios" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="EquipoAtencion" class="control-label"></label>
-                <input asp-for="EquipoAtencion" class="form-control" />
+                <select asp-for="EquipoAtencion" class="form-control">
+                    <option value="">Seleccione un equipo</option>
+                    <option value="Equipo1">Equipo 1</option>
+                    <option value="Equipo2">Equipo 2</option>
+                    <option value="Equipo3">Equipo 3</option>
+                </select>
                 <span asp-validation-for="EquipoAtencion" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Guardar cambios" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-secondary">Volver a la lista</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
