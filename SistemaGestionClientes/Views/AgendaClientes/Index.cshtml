@@ -1,62 +1,74 @@
 ﻿@model IEnumerable<SistemaGestionClientes.Models.AgendaCliente>
 
-    @{
+@{
     ViewData["Title"] = "Lista de Clientes";
-    }
+}
 
-    <h1>Lista de Clientes</h1>
-
-    <p>
-        <a asp-action="Create" class="btn btn-success">Crear Nuevo Cliente</a>
-    </p>
-
-    <table class="table table-striped table-bordered">
-        <thead class="thead-dark">
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.Nombre)</th>
-                <th>@Html.DisplayNameFor(model => model.Proyecto)</th>
-                <th>@Html.DisplayNameFor(model => model.Empresa)</th>
-                <th>@Html.DisplayNameFor(model => model.Telefono)</th>
-                <th>@Html.DisplayNameFor(model => model.Correo)</th>
-                <th>@Html.DisplayNameFor(model => model.FechaDeIngreso)</th>
-                <th>@Html.DisplayNameFor(model => model.HoraDeAgenda)</th>
-                <th>@Html.DisplayNameFor(model => model.FechaHoraAtencionOficina)</th>
-                <th>@Html.DisplayNameFor(model => model.Revisado)</th>
-                <th>@Html.DisplayNameFor(model => model.Comentarios)</th>
-                <th>@Html.DisplayNameFor(model => model.EquipoAtencion)</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-        {
-            <tr>
-                <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
-                <td>@Html.DisplayFor(modelItem => item.Proyecto)</td>
-                <td>@Html.DisplayFor(modelItem => item.Empresa)</td>
-                <td>@Html.DisplayFor(modelItem => item.Telefono)</td>
-                <td>@Html.DisplayFor(modelItem => item.Correo)</td>
-                <td>@item.FechaDeIngreso.ToString("dd/MM/yyyy")</td>
-                <td>@item.HoraDeAgenda.ToString("hh\\:mm")</td>
-                <td>@item.FechaHoraAtencionOficina?.ToString("dd/MM/yyyy HH:mm")</td>
-                <td>
-                    @if (item.Revisado)
-                    {
-                    <span class="badge badge-success">Sí</span>
-                    }
-                    else
-                    {
-                    <span class="badge badge-warning">No</span>
-                    }
-                </td>
-                <td>@Html.DisplayFor(modelItem => item.Comentarios)</td>
-                <td>@Html.DisplayFor(modelItem => item.EquipoAtencion)</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Editar</a>
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Detalles</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Eliminar</a>
-                </td>
-            </tr>
-        }
-        </tbody>
-    </table>
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header text-center bg-primary text-white">
+            <h2>Lista de Clientes</h2>
+            <p>Consulta y administra la información de los clientes registrados</p>
+        </div>
+        <div class="card-body">
+            <form asp-action="UpdateAll" method="post">
+                <div class="text-right mb-3">
+                    <a asp-action="Create" class="btn btn-success btn-lg">Crear Nuevo Cliente</a>
+                </div>
+                <table class="table table-bordered table-striped">
+                    <thead class="bg-primary text-white">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Proyecto</th>
+                            <th>Empresa</th>
+                            <th>Teléfono</th>
+                            <th>Correo</th>
+                            <th>Fecha de Ingreso</th>
+                            <th>Hora de Agenda</th>
+                            <th>Comentarios</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <input type="text" name="Clientes[@item.Id].Nombre" value="@item.Nombre" class="form-control" />
+                                </td>
+                                <td>
+                                    <input type="text" name="Clientes[@item.Id].Proyecto" value="@item.Proyecto" class="form-control" />
+                                </td>
+                                <td>
+                                    <input type="text" name="Clientes[@item.Id].Empresa" value="@item.Empresa" class="form-control" />
+                                </td>
+                                <td>
+                                    <input type="text" name="Clientes[@item.Id].Telefono" value="@item.Telefono" class="form-control" />
+                                </td>
+                                <td>
+                                    <input type="email" name="Clientes[@item.Id].Correo" value="@item.Correo" class="form-control" />
+                                </td>
+                                <td>
+                                    <input type="date" name="Clientes[@item.Id].FechaDeIngreso" value="@item.FechaDeIngreso.ToString("yyyy-MM-dd")" class="form-control" />
+                                </td>
+                                <td>
+                                    <input type="time" name="Clientes[@item.Id].HoraDeAgenda" value="@item.HoraDeAgenda.ToString("hh\\:mm")" class="form-control" />
+                                </td>
+                                <td>
+                                    <textarea name="Clientes[@item.Id].Comentarios" class="form-control">@item.Comentarios</textarea>
+                                </td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Editar</a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Eliminar</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
