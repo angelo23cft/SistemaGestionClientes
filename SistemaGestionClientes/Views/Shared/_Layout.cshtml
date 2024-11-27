@@ -45,20 +45,20 @@
             transition: all 0.3s ease;
         }
 
-            .nav-item .nav-link::after {
-                content: '';
-                position: absolute;
-                width: 0;
-                height: 2px;
-                bottom: 0;
-                left: 0;
-                background-color: var(--primary-color);
-                transition: width 0.3s ease;
-            }
+        .nav-item .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
 
-            .nav-item .nav-link:hover::after {
-                width: 100%;
-            }
+        .nav-item .nav-link:hover::after {
+            width: 100%;
+        }
 
         .container {
             max-width: 1200px;
@@ -80,15 +80,15 @@
             font-size: 0.9em;
         }
 
-            footer a {
-                color: var(--primary-color);
-                text-decoration: none;
-                transition: color 0.3s ease;
-            }
+        footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
 
-                footer a:hover {
-                    color: var(--secondary-color);
-                }
+        footer a:hover {
+            color: var(--secondary-color);
+        }
 
         .dark-mode-toggle {
             position: fixed;
@@ -106,10 +106,10 @@
             transition: background-color 0.3s, color 0.3s;
         }
 
-            .dark-mode-toggle:hover {
-                background-color: #3498db;
-                color: white;
-            }
+        .dark-mode-toggle:hover {
+            background-color: #3498db;
+            color: white;
+        }
 
         body.dark-mode .dark-mode-toggle {
             background-color: #333;
@@ -122,51 +122,58 @@
             color: #ffffff;
         }
 
-            body.dark-mode .navbar {
-                background-color: #1f1f1f !important;
-            }
+        body.dark-mode .navbar {
+            background-color: #1f1f1f !important;
+        }
 
-            body.dark-mode .nav-link {
-                color: #ffffff !important;
-            }
+        body.dark-mode .nav-link {
+            color: #ffffff !important;
+        }
 
-            body.dark-mode footer {
-                background-color: #1f1f1f;
-                color: #ffffff;
-            }
+        body.dark-mode footer {
+            background-color: #1f1f1f;
+            color: #ffffff;
+        }
     </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SistemaGestionClientes</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="AgendaClientes" asp-action="Index">Agenda Clientes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Proyectos" asp-action="Index">Proyectos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Tareas" asp-action="Index">Tareas</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="Index">Usuarios</a>
-                        </li>
-                    </ul>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container-fluid">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SistemaGestionClientes</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="AgendaClientes" asp-action="Index">Agenda Clientes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Proyectos" asp-action="Index">Proyectos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Tareas" asp-action="Index">Tareas</a>
+                            </li>
+                            @if (User.IsInRole("admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Usuarios" asp-action="Index">Usuarios</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        }
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()

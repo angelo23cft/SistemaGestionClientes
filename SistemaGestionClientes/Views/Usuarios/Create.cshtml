@@ -24,7 +24,10 @@
                 </div>
                 <div class="form-group mb-3">
                     <label asp-for="Rol" class="form-label"><i class="fas fa-user-tag"></i> Rol</label>
-                    <input asp-for="Rol" class="form-control" />
+                    <select asp-for="Rol" class="form-control">
+                        <option value="admin">Admin</option>
+                        <option value="usuario">Usuario Común</option>
+                    </select>
                     <span asp-validation-for="Rol" class="text-danger"></span>
                 </div>
                 <div class="form-group mb-3">

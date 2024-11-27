@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SistemaGestionClientes.Models;
 using System.Diagnostics;
 
@@ -13,6 +14,7 @@ namespace SistemaGestionClientes.Controllers
             _logger = logger;
         }
 
+        [Authorize(Roles = "admin")]
         public IActionResult Index()
         {
             return View();
