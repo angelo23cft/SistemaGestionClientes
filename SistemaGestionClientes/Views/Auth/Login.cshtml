@@ -3,28 +3,103 @@
     Layout = null;
 }
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="utf-8" />
     <title>Iniciar Sesión</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <style>
+        body {
+            background-image: url('https://img1.wallspic.com/crops/1/6/0/6/7/176061/176061-ilustracion_de_paisaje_de_manzana-manzana-ilustracion-paisaje_natural-morado-1920x1080.jpg'); /* Imagen de fondo */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.85); /* Fondo con mayor transparencia */
+            backdrop-filter: blur(10px); /* Efecto de desenfoque */
+        }
+
+        .card-header {
+            background-color: #6f42c1; /* Azul más suave y transparente */
+            color: white;
+            text-align: center;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            padding: 1.5rem;
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            height: 45px;
+            box-shadow: none;
+            border: 1px solid #ced4da;
+            background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con leve transparencia */
+        }
+
+        .form-group label {
+            font-weight: bold;
+            color: #6c757d; /* Gris más suave para el texto */
+        }
+
+        .btn-primary {
+            background-color: #6f42c1; /* Morado suave */
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 10px;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+            .btn-primary:hover {
+                background-color: #5a33b3; /* Morado más oscuro en el hover */
+            }
+
+        .text-center p {
+            font-size: 0.9rem;
+            color: white; /* Gris claro para el texto */
+        }
+
+        .text-center a {
+            color: #6f42c1; /* Morado suave */
+            font-weight: bold;
+        }
+
+            .text-center a:hover {
+                text-decoration: underline;
+            }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-4">
-                <div class="card shadow-lg">
-                    <div class="card-header bg-primary text-white text-center">
+                <div class="card">
+                    <div class="card-header">
                         <h4>Iniciar Sesión</h4>
                     </div>
                     <div class="card-body">
                         <form asp-action="Login" method="post">
-                            <div class="form-group mb-3">
+                            <div class="form-group mb-4">
                                 <label asp-for="NombreUsuario" class="form-label">Usuario</label>
                                 <input asp-for="NombreUsuario" class="form-control" />
                                 <span asp-validation-for="NombreUsuario" class="text-danger"></span>
                             </div>
-                            <div class="form-group mb-3">
+                            <div class="form-group mb-4">
                                 <label asp-for="Contraseña" class="form-label">Contraseña</label>
                                 <input asp-for="Contraseña" class="form-control" type="password" />
                                 <span asp-validation-for="Contraseña" class="text-danger"></span>
@@ -36,7 +111,7 @@
                     </div>
                 </div>
                 <div class="text-center mt-3">
-                    <p class="text-muted">¿Olvidaste tu contraseña? <a href="#">Recupérala aquí</a></p>
+                    <p>¿Olvidaste tu contraseña? <a href="#">Recupérala aquí</a></p>
                 </div>
             </div>
         </div>
@@ -45,4 +120,3 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
